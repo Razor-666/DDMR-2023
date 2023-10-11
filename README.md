@@ -1,5 +1,9 @@
-# DDMR-2023
-A differential wheeled robot is a mobile robot whose movement is based on two separately driven wheels placed on either side of the robot body. It can thus change its direction by varying the relative rate of rotation of its wheels and hence does not require an additional steering motion. Robots with such a drive typically have one or more castor wheels to prevent the vehicle from tilting.
+I always wanted to build an autonomous robot from scratch that is capable of Simultaneous Localization, obstacles avoids and line follower. Beginning of 2022,I started exploring various concepts and here in this article, I will try to cover the main aspects of the robot hardware, build, and the codes that I ended up implementing.
 
-# Design DDMR
-![WhatsApp Image 2023-10-06 at 07 55 28](https://github.com/Razor-666/DDMR-2023/assets/137206338/95f8e436-d814-4906-b6f1-60c0889f6043)
+My GitHub repositories that complement this article:
+DDMR2023: https://github.com/Razor-666/DDMR-2023
+
+
+
+
+
