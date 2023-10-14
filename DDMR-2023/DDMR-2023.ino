@@ -259,7 +259,7 @@ void loop() {
 
 
   //  /* Program Inti */
-  //  mulai_Loc();
+    mulai_Loc();
   //  mulai_LF();
 
   //terimaHCSR-04
