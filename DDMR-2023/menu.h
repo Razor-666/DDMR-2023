@@ -53,12 +53,53 @@ void menu() {
 
 void ObstacleAvoidance() {
   if (halaman == 2) {
+    //    lcd.clearDisplay();
+    //    lcd.setTextSize(1);
+    //    lcd.drawBitmap(15, 0, flagracing, 40, 40, BLACK, WHITE);
+    //    lcd.setTextSize(2);
+    //    lcd.setCursor(50, 18);
+    //    lcd.print("START");
     lcd.clearDisplay();
-    lcd.setTextSize(1);
-    lcd.drawBitmap(15, 0, flagracing, 40, 40, BLACK, WHITE);
-    lcd.setTextSize(2);
-    lcd.setCursor(50, 18);
-    lcd.print("START");
+    if (menuObst == 1) {
+      lcd.clearDisplay();
+      lcd.setCursor(1, 1);
+      lcd.setTextColor(WHITE);
+      lcd.print("> POS_X: ");
+      lcd.setCursor(50, 1);
+      lcd.println(cntX);
+    } else {
+      lcd.setCursor(1, 1);
+      lcd.setTextColor(WHITE);
+      lcd.print("  POS_X: ");
+      lcd.setCursor(50, 1);
+      lcd.println(cntX);
+    }
+    if (menuObst == 2) {
+      lcd.setCursor(1, 10);
+      lcd.setTextColor(WHITE);
+      lcd.print("> POS_Y: ");
+      lcd.setCursor(50, 10);
+      lcd.println(cntY);
+    } else {
+      lcd.setCursor(1, 10);
+      lcd.setTextColor(WHITE);
+      lcd.print("  POS_Y: ");
+      lcd.setCursor(50, 10);
+      lcd.println(cntY);
+    }
+    if (menuObst == 3) {
+      lcd.setCursor(1, 20);
+      lcd.setTextColor(WHITE);
+      lcd.print("> Mulai");
+      //      lcd.setCursor(50, 20);
+      //      lcd.println(cntY);
+    } else {
+      lcd.setCursor(1, 20);
+      lcd.setTextColor(WHITE);
+      lcd.print("  Mulai");
+      //      lcd.setCursor(50, 20);
+      //      lcd.println(cntY);
+    }
   }
   lcd.display();
 }

@@ -1,12 +1,14 @@
 /* Project by Razor-666 */
-      /* 2023 */
+/* 2023 */
 #include "hardware.h"
 #include "kompas.h"
+#include "komunikasi.h"
 #include "DDMR.h"
 #include "menu.h"
 
 void setup() {
   inisial();
+
   awal_tampilan();
   // Use UART port of DYNAMIXEL Shield to debug.
   DEBUG_SERIAL.begin(115200);
@@ -181,6 +183,7 @@ void loop() {
   //  last_rot_1 = rotation_1;
   //  last_rot_2 = rotation_2;
 
+  //////////////////////////////////////////////////////////////////// REAL ///////////////////////////////////////////////////////////////////
   //uji coba pushbutton
   menu();
   ObstacleAvoidance();
@@ -207,20 +210,31 @@ void loop() {
     menuItem++;
     if (menuItem > 3)menuItem = 1;
   }
-  //
+  //  //untuk button down Hal 2
+  else if (DOWN && halaman == 2) {
+    DOWN = false;
+    menuObst++;
+    if (menuObst > 3)menuObst = 1;
+  }
   //  //untuk button down Hal 3
-  if (DOWN && halaman == 3) {
+  else if (DOWN && halaman == 3) {
     DOWN = false;
     menuLoc++;
     if (menuLoc > 3)menuLoc = 1;
   }
 
 
-  //Untuk push button incr dan decr
+  //Untuk push button incr dan decr hal 3
   if (halaman == 3 && menuLoc == 1 && statusbtnDecr == 0) cntX -= 10;
   else if (halaman == 3 && menuLoc == 1 && statusbtnIncr == 0) cntX += 10;
   else if (halaman == 3 && menuLoc == 2 && statusbtnDecr == 0) cntY -= 10;
   else if (halaman == 3 && menuLoc == 2 && statusbtnIncr == 0) cntY += 10;
+
+  //Untuk push button incr dan decr hal 2
+  if (halaman == 2 && menuObst == 1 && statusbtnDecr == 0) cntX -= 10;
+  else if (halaman == 2 && menuObst == 1 && statusbtnIncr == 0) cntX += 10;
+  else if (halaman == 2 && menuObst == 2 && statusbtnDecr == 0) cntY -= 10;
+  else if (halaman == 2 && menuObst == 2 && statusbtnIncr == 0) cntY += 10;
 
 
   // untuk button ok
@@ -242,10 +256,15 @@ void loop() {
       halaman = 1;
     }
   }
-  
-  /* Program Inti */
-  mulai_Loc();
-  mulai_LF();
+
+
+  //  /* Program Inti */
+  //  mulai_Loc();
+  //  mulai_LF();
+
+  //terimaHCSR-04
+  //    terima_hcsr();
+
   /* Program Inti */
 
   //  // put your main code here, to run repeatedly:

@@ -31,32 +31,6 @@ void get_posisi() {
   last_rot_2 = rotation_2;
 }
 
-//  //  //HCSR04
-//  digitalWrite(trigPin1, LOW); delayMicroseconds(2);
-//  digitalWrite(trigPin1, HIGH); delayMicroseconds(10);
-//  digitalWrite(trigPin1, LOW);
-//  duration1 = pulseIn(echoPin1, HIGH);
-//
-//  digitalWrite(trigPin2, LOW); delayMicroseconds(2);
-//  digitalWrite(trigPin2, HIGH); delayMicroseconds(10);
-//  digitalWrite(trigPin2, LOW);
-//  duration2 = pulseIn(echoPin2, HIGH);
-//
-//  digitalWrite(trigPin3, LOW); delayMicroseconds(2);
-//  digitalWrite(trigPin3, HIGH); delayMicroseconds(10);
-//  digitalWrite(trigPin3, LOW);
-//  duration3 = pulseIn(echoPin3, HIGH);
-//
-//  //perhitungan untuk dijadikan jarak
-//  ki = duration1 / 58.2;
-//  te = duration2 / 58.2;
-//  ka = duration3 / 58.2;
-//
-//
-//  // Serial.println(ki);
-//  // Serial.println(te);
-//  // Serial.println(ka);
-
 void set_point(double xg, double yg) {
 
   double delta_x, delta_y, rho, alpha, sdt, beta, vel, omega, Fax, Fay, Ftx, Fty;
@@ -144,6 +118,32 @@ void set_point(double xg, double yg) {
   //  Serial.println(String("Vr: ") + Vr + ";" + String("Vl: ") + Vl +  String("Xg: ") + xg +  String("Xy: ") + yg);
 }
 
+void mulai_obst() {
+  if (halaman == 2 && menuObst == 3 && statusBtnOk == 0) {
+    while (true) {
+      terima_hcsr();
+      nilai_yaws();
+      get_posisi();
+      set_point(cntX, cntY);
+
+      lcd.clearDisplay();
+      lcd.setCursor(1, 1);
+      lcd.println("Koordinat Sekarang");
+      lcd.setCursor(1, 10);
+      lcd.setTextColor(WHITE);
+      lcd.print(String("X: ") + x);
+      lcd.setCursor(1, 20);
+      lcd.print(String("Y: ") + y);
+
+      switch (x == xg && y == yg) {
+        case 1:
+          break;
+      }
+      lcd.display();
+    }
+  }
+}
+
 void mulai_Loc() {
   if (halaman == 3 && menuLoc == 3 && statusBtnOk == 0) {
     while (true) {
@@ -174,6 +174,10 @@ int ir_kanan() {
 }
 int ir_kiri() {
   return digitalRead(pinIr_kiri);
+}
+
+int ir_tengah() {
+
 }
 
 void mulai_LF() {

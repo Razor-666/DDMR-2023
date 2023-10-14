@@ -76,8 +76,10 @@ Adafruit_SSD1306 lcd(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
 /* HCSR-04 */
 //#define echoPin1 4 //Echo Pin Kiri
 //#define trigPin1 5 //Trigger Pin Kiri
-#define echoPin2 10 //Echo Pin Tengah
-#define trigPin2 9 //Trigger Pin Tengah
+
+//const int echoPin2 = 8; //Echo Pin Tengah
+//const int trigPin2 = 7; //Trigger Pin Tengah
+
 //#define echoPin3 0 //Echo Pin Kanan
 //#define trigPin3 1 //Trigger Pin Kanan
 
@@ -87,7 +89,7 @@ Adafruit_SSD1306 lcd(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
 //int minimumRange2 = 00; //kebutuhan akan minimal range
 //int maximumRange3 = 200; //kebutuhan akan maksimal range
 //int minimumRange3 = 00; //kebutuhan akan minimal range
-long duration1, duration2, duration3, ki, te, ka; //waktu untuk kalkulasi jarak
+//long duration1, duration2, duration3, ki, te, ka; //waktu untuk kalkulasi jarak
 /* HCSR-04 */
 
 /*Menu Tampilan*/
@@ -96,14 +98,15 @@ int menuItem = 1;
 int cntX = 0;
 int cntY = 0;
 int menuLoc = 1;
+int menuObst = 1;
 
-#define btnDown 8 //pushbutton diganti
+#define btnDown 6 //pushbutton diganti
 //#define btnUp 9
-#define btnOk   9
-#define btnBack 10
+#define btnOk   7
+#define btnBack 8
 
-int btnIncr = 7;
-int btnDecr = 6;
+int btnIncr = 9;
+int btnDecr = 10;
 int statusbtnIncr, statusbtnDecr;
 
 //boolean statusBtnUp   = false;
@@ -156,7 +159,7 @@ int pinIr_kanan = A2;
 //#include <Wire.h>
 String received0 = "";
 String received1 = "";
-//String received2 = "";
+String received2 = "";
 int hc0, hc1, hc2;
 /* OpenRB Master */
 
@@ -165,6 +168,7 @@ void inisial() {
   Wire.begin();
   Serial.begin(9600);
   /* OpenRB Master */
+
   /*MPU6050*/
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
   Wire.begin();
@@ -212,16 +216,6 @@ void inisial() {
 
   pinMode(btnIncr, INPUT_PULLUP);
   pinMode(btnDecr, INPUT_PULLUP);
-
-  //HCSR-04
-  //  pinMode(trigPin1, OUTPUT);
-  //  pinMode(echoPin1, INPUT);
-
-  pinMode(trigPin2, OUTPUT);
-  pinMode(echoPin2, INPUT);
-
-  //  pinMode(trigPin3, OUTPUT);
-  //  pinMode(echoPin3, INPUT);
 
   pinMode(pinIr_kanan, INPUT);
   pinMode(pinIr_kiri, INPUT);
