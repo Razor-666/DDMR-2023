@@ -10,18 +10,19 @@ void nilai_yaws() {
     mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
     //    y = ypr[0] * 180 / M_PI; //dalam deegre
     theta = ypr[0] * M_PI / 180; //dalam radian
+//    theta = -theta;
     //tet untuk nilai akhir sudut;
     avg_delta_tetha = (theta - tet) / 2;
-    //    Serial.println(theta);
+//    Serial.println(theta);
     //Serial.println(y);
-//    lcd.clearDisplay();
-//    lcd.setTextSize(1);
-//    lcd.setTextColor(WHITE);
-//    lcd.setCursor(30, 1);
-//    lcd.print("MPU6050");
-//    lcd.setCursor(5, 3);
-//    lcd.println(theta);
-//    lcd.display();
+    //    lcd.clearDisplay();
+    //    lcd.setTextSize(1);
+    //    lcd.setTextColor(WHITE);
+    //    lcd.setCursor(30, 1);
+    //    lcd.print("MPU6050");
+    //    lcd.setCursor(5, 3);
+    //    lcd.println(theta);
+    //    lcd.display();
   }
   //  delay(10);
 }

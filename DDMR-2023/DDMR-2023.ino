@@ -231,10 +231,10 @@ void loop() {
   else if (halaman == 3 && menuLoc == 2 && statusbtnIncr == 0) cntY += 10;
 
   //Untuk push button incr dan decr hal 2
-  if (halaman == 2 && menuObst == 1 && statusbtnDecr == 0) cntX -= 10;
-  else if (halaman == 2 && menuObst == 1 && statusbtnIncr == 0) cntX += 10;
-  else if (halaman == 2 && menuObst == 2 && statusbtnDecr == 0) cntY -= 10;
-  else if (halaman == 2 && menuObst == 2 && statusbtnIncr == 0) cntY += 10;
+  if (halaman == 2 && menuObst == 1 && statusbtnDecr == 0) cntX_obst -= 10;
+  else if (halaman == 2 && menuObst == 1 && statusbtnIncr == 0) cntX_obst += 10;
+  else if (halaman == 2 && menuObst == 2 && statusbtnDecr == 0) cntY_obst -= 10;
+  else if (halaman == 2 && menuObst == 2 && statusbtnIncr == 0) cntY_obst += 10;
 
 
   // untuk button ok
@@ -257,11 +257,11 @@ void loop() {
     }
   }
 
-
   //  /* Program Inti */
-    mulai_Loc();
-  //  mulai_LF();
-
+  mulai_Loc();
+  mulai_LF();
+  
+  //  nilai_yaws();
   //terimaHCSR-04
   //    terima_hcsr();
 

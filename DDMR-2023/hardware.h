@@ -10,6 +10,7 @@ double Vr, Vl, vel_r, vel_l;
 float last_rot_1 = 0;
 float last_rot_2 = 0;
 float x, y;
+double delta_x, delta_y, rho, alpha, sdt, beta, vel, omega, Fax, Fay, Ftx, Fty;
 /* Kinematic Dynamixel */
 
 /* Kompas */
@@ -97,6 +98,8 @@ int halaman = 1;
 int menuItem = 1;
 int cntX = 0;
 int cntY = 0;
+int cntX_obst = 0;
+int cntY_obst = 0;
 int menuLoc = 1;
 int menuObst = 1;
 
@@ -151,8 +154,9 @@ const unsigned char flagracing [] PROGMEM = {
 /*ICON Tampilan OLED*/
 
 /* IR PIN */
-int pinIr_kiri = A1;
-int pinIr_kanan = A2;
+int pinIr_kiri = 5;
+int pinIr_kanan = 4;
+int pinIr_tengah = 3;
 /* IR PIN */
 
 /* OpenRB Master */

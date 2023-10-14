@@ -66,26 +66,26 @@ void ObstacleAvoidance() {
       lcd.setTextColor(WHITE);
       lcd.print("> POS_X: ");
       lcd.setCursor(50, 1);
-      lcd.println(cntX);
+      lcd.println(cntX_obst);
     } else {
       lcd.setCursor(1, 1);
       lcd.setTextColor(WHITE);
       lcd.print("  POS_X: ");
       lcd.setCursor(50, 1);
-      lcd.println(cntX);
+      lcd.println(cntX_obst);
     }
     if (menuObst == 2) {
       lcd.setCursor(1, 10);
       lcd.setTextColor(WHITE);
       lcd.print("> POS_Y: ");
       lcd.setCursor(50, 10);
-      lcd.println(cntY);
+      lcd.println(cntY_obst);
     } else {
       lcd.setCursor(1, 10);
       lcd.setTextColor(WHITE);
       lcd.print("  POS_Y: ");
       lcd.setCursor(50, 10);
-      lcd.println(cntY);
+      lcd.println(cntY_obst);
     }
     if (menuObst == 3) {
       lcd.setCursor(1, 20);

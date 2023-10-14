@@ -19,10 +19,11 @@ void get_posisi() {
   float D_1 = ((rotation_1 - last_rot_1) / 4096) * 21.35; /*2*3,14*0,034=0,2135 -> keliling roda*/
   float D_2 = ((rotation_2 - last_rot_2) / 4096) * 21.35;
   float D_center = (-D_1 + D_2) / 2;
+  //  Serial.println(String("D_Center:") + D_center);
   //untuk mendapatkan nilai tengah pada bagian jarak
   x = x_last + (D_center * cos(theta + avg_delta_tetha / 2));
   y = y_last + (D_center * sin(theta + avg_delta_tetha / 2));
-  Serial.println(String("X: ") + x + String("Y: ") + y); //menampilkan koordinat sekarang
+  //  Serial.println(String("X: ") + x + String("Y: ") + y); //menampilkan koordinat sekarang
 
   tet = theta;
   x_last = x;
@@ -33,8 +34,6 @@ void get_posisi() {
 
 void set_point(double xg, double yg) {
 
-  double delta_x, delta_y, rho, alpha, sdt, beta, vel, omega, Fax, Fay, Ftx, Fty;
-
   /* Attractive Potential Fiorce */
   //  Fax = -1 * (x - xg);
   //  Fay = -1 * (y - yg);
@@ -42,7 +41,7 @@ void set_point(double xg, double yg) {
   //inti
   delta_x = xg - x;
   delta_y = yg - y;
-  //Serial.println(String("Delta_x: ") + delta_x + String("Delta_y: ") + delta_y);
+  //  Serial.println(String("Delta_x: ") + delta_x + String("Delta_y: ") + delta_y);
   //  delta_x = xg - x;
   //  delta_y = yg - y;
 
@@ -54,24 +53,26 @@ void set_point(double xg, double yg) {
   rho = sqrt (pow(delta_x, 2) + pow(delta_y, 2));
   Serial.println(String("rho: ") + rho );
 
-  //Logika obstacle avoidance pengatur sudut
-  //  if (ki > 25 && te > 25 && ka > 25) { //000
-  //    sdt = atan2(Fty, Ftx);
-  //  } else if (ki > 25 && te > 25 && ka <= 25) { //001
-  //    sdt = atan2(Fty, Ftx) + 45;
-  //  } else if (ki > 25 && te <= 25 && ka > 25) { //010
-  //    sdt = atan2(Fty, Ftx) + 45;
-  //  } else if (ki > 25 && te <= 25 && ka <= 25) { //011
-  //    sdt = atan2(Fty, Ftx) + 90;
-  //  } else if (ki <= 25 && te > 25 && ka > 25) { //100
-  //    sdt = atan2(Fty, Ftx) - 45;
-  //  } else if (ki <= 25 && te <= 25 && ka > 25) { //110
-  //    sdt = atan2(Fty, Ftx) - 90;
-  //  } else if (ki <= 25 && te > 25 && ka <= 25) { //101
-  //    sdt = atan2(Fty, Ftx) + 45;
+  //Logika obstacle avoidance pengatur sudut //hc0 = ki //hc1 = ka //hc2 = te
+  //  if (hc0 > 25 && hc2 > 25 && hc1 > 25) { //000
+  //    sdt = atan2(delta_y, delta_x);
+  //  } else if (hc0 > 25 && hc2 > 25 && hc1 <= 25) { //001
+  //    sdt = atan2(delta_y, delta_x) + 45;
+  //  } else if (hc0 > 25 && hc2 <= 25 && hc1 > 25) { //010
+  //    sdt = atan2(delta_y, delta_x) + 45;
+  //  } else if (hc0 > 25 && hc2 <= 25 && hc1 <= 25) { //011
+  //    sdt = atan2(delta_y, delta_x) + 90;
+  //  } else if (hc0 <= 25 && hc2 > 25 && hc1 > 25) { //100
+  //    sdt = atan2(delta_y, delta_x) - 45;
+  //  } else if (hc0 <= 25 && hc2 <= 25 && hc1 > 25) { //110
+  //    sdt = atan2(delta_y, delta_x) - 90;
+  //  } else if (hc0 <= 25 && hc2 > 25 && hc1 <= 25) { //101
+  //    sdt = atan2(delta_y, delta_x) + 45;
   //  } else {
-  //    sdt = atan2(Fty, Ftx) + 90;
+  //    sdt = atan2(delta_y, delta_x) + 90;
   //  }
+  //Logika obstacle avoidance pengatur sudut //hc0 = ki //hc1 = ka //hc2 = te
+
   sdt = atan2(delta_y, delta_x);
 
   alpha = sdt - theta;
@@ -82,7 +83,7 @@ void set_point(double xg, double yg) {
 
   vel_r = vel + (omega * 0.168 / 0.2); //omega*L/(2R) aslinya 0.168
   vel_l = vel - (omega * 0.168 / 0.2);
-  //  Serial.println(String("Vel_r: ") + vel_r + ";" + String("Vel_l: ") + vel_l);
+  Serial.println(String("Vel_r: ") + vel_r + ";" + String("Vel_l: ") + vel_l);
 
   if (vel_r > 50)
   {
@@ -177,7 +178,7 @@ int ir_kiri() {
 }
 
 int ir_tengah() {
-
+  return digitalRead(pinIr_tengah);
 }
 
 void mulai_LF() {
