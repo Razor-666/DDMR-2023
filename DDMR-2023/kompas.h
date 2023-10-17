@@ -9,11 +9,11 @@ void nilai_yaws() {
     mpu.dmpGetGravity(&gravity, &q);
     mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
     //    y = ypr[0] * 180 / M_PI; //dalam deegre
-    theta = ypr[0] * M_PI / 180; //dalam radian
-//    theta = -theta;
+    theta = ypr[0]; //dalam radian
+    theta = -theta;
     //tet untuk nilai akhir sudut;
     avg_delta_tetha = (theta - tet) / 2;
-//    Serial.println(theta);
+    //    Serial.println(theta);
     //Serial.println(y);
     //    lcd.clearDisplay();
     //    lcd.setTextSize(1);

@@ -18,18 +18,13 @@ void get_posisi() {
   rotation_2 = dxl.getPresentPosition(DXL_ID2);//, UNIT_DEGREE);
   float D_1 = ((rotation_1 - last_rot_1) / 4096) * 21.35; /*2*3,14*0,034=0,2135 -> keliling roda*/
   float D_2 = ((rotation_2 - last_rot_2) / 4096) * 21.35;
-  float D_center = (-D_1 + D_2) / 2;
+  float D_center = (-D_1 + D_2) / 2; //
+
   //  Serial.println(String("D_Center:") + D_center);
   //untuk mendapatkan nilai tengah pada bagian jarak
-  x = x_last + (D_center * cos(theta + avg_delta_tetha / 2));
-  y = y_last + (D_center * sin(theta + avg_delta_tetha / 2));
+  x = x_last + (D_center * cos(theta));//+ avg_delta_tetha / 2));
+  y = y_last + (D_center * sin(theta));// + avg_delta_tetha / 2));
   //  Serial.println(String("X: ") + x + String("Y: ") + y); //menampilkan koordinat sekarang
-
-  tet = theta;
-  x_last = x;
-  y_last = y;
-  last_rot_1 = rotation_1;
-  last_rot_2 = rotation_2;
 }
 
 void set_point(double xg, double yg) {
@@ -83,7 +78,7 @@ void set_point(double xg, double yg) {
 
   vel_r = vel + (omega * 0.168 / 0.2); //omega*L/(2R) aslinya 0.168
   vel_l = vel - (omega * 0.168 / 0.2);
-  Serial.println(String("Vel_r: ") + vel_r + ";" + String("Vel_l: ") + vel_l);
+  //Serial.println(String("Vel_r: ") + vel_r + ";" + String("Vel_l: ") + vel_l);
 
   if (vel_r > 50)
   {
@@ -92,7 +87,7 @@ void set_point(double xg, double yg) {
   else
   {
     Vr = vel_r;
-    if (rho < 0.5) Vr = 0;
+    //    if (rho < 5) Vr = 0; //rho diganti ke 5 100cm=1
   }
 
   if (vel_l > 50)
@@ -102,19 +97,19 @@ void set_point(double xg, double yg) {
   else
   {
     Vl = vel_l;
-    if (rho < 0.5) Vl = 0;
+    //    if (rho < 5) Vl = 0;
   }
   //
   //  //DEBUG_SERIAL.println(delta_x);
-  if (rho > 0.1)
+  if (rho > 5) //default 0.1
   {
     dxl.setGoalVelocity(DXL_ID1, -Vr, UNIT_RPM);
     dxl.setGoalVelocity(DXL_ID2, Vl, UNIT_RPM);
   }
   else
   {
-    dxl.setGoalVelocity(DXL_ID1, Vr, UNIT_RPM);
-    dxl.setGoalVelocity(DXL_ID2, Vl, UNIT_RPM);
+    dxl.setGoalVelocity(DXL_ID1, 0, UNIT_RPM);
+    dxl.setGoalVelocity(DXL_ID2, 0, UNIT_RPM);
   }
   //  Serial.println(String("Vr: ") + Vr + ";" + String("Vl: ") + Vl +  String("Xg: ") + xg +  String("Xy: ") + yg);
 }

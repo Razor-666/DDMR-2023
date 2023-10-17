@@ -9,7 +9,8 @@ double krho = 0.2; //gain
 double Vr, Vl, vel_r, vel_l;
 float last_rot_1 = 0;
 float last_rot_2 = 0;
-float x, y;
+float x = 0.00;
+float y = 0.00;
 double delta_x, delta_y, rho, alpha, sdt, beta, vel, omega, Fax, Fay, Ftx, Fty;
 /* Kinematic Dynamixel */
 

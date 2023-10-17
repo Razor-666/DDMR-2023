@@ -184,7 +184,7 @@ void loop() {
   //  last_rot_2 = rotation_2;
 
   //////////////////////////////////////////////////////////////////// REAL ///////////////////////////////////////////////////////////////////
-  //uji coba pushbutton
+  //  uji coba pushbutton
   menu();
   ObstacleAvoidance();
   Localization();
@@ -223,7 +223,6 @@ void loop() {
     if (menuLoc > 3)menuLoc = 1;
   }
 
-
   //Untuk push button incr dan decr hal 3
   if (halaman == 3 && menuLoc == 1 && statusbtnDecr == 0) cntX -= 10;
   else if (halaman == 3 && menuLoc == 1 && statusbtnIncr == 0) cntX += 10;
@@ -260,7 +259,12 @@ void loop() {
   //  /* Program Inti */
   mulai_Loc();
   mulai_LF();
-  
+
+  tet = theta;
+  x_last = x;
+  y_last = y;
+  last_rot_1 = rotation_1;
+  last_rot_2 = rotation_2;
   //  nilai_yaws();
   //terimaHCSR-04
   //    terima_hcsr();
