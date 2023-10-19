@@ -257,18 +257,19 @@ void loop() {
   }
 
   //  /* Program Inti */
+  //  terima_hcsr();/
+  mulai_obst();
   mulai_Loc();
   mulai_LF();
 
-  tet = theta;
-  x_last = x;
-  y_last = y;
-  last_rot_1 = rotation_1;
-  last_rot_2 = rotation_2;
+  //  nilai_yaws();
+  //  get_posisi();
+  //  set_point(100, 0);
+
+
   //  nilai_yaws();
   //terimaHCSR-04
-  //    terima_hcsr();
-
+//  terima_hcsr();
   /* Program Inti */
 
   //  // put your main code here, to run repeatedly:

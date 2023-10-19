@@ -6,7 +6,7 @@ long duration[5];
 int distance[5];
 
 void setup() {
-  Wire.begin(2); //I2C address
+  Wire.begin(8); //I2C address
   Wire.onRequest(requestEvent);
 
   //      Serial.begin(9600);

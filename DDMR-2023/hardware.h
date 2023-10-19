@@ -1,22 +1,21 @@
 /* Kinematic Dynamixel */
-double rotation_1 = 0;
-double rotation_2 = 0;
-double x_last = 0;
-double y_last = 0;
-double xg; //orientasi x
-double yg; //orientasi y
-double krho = 0.2; //gain
-double Vr, Vl, vel_r, vel_l;
-float last_rot_1 = 0;
-float last_rot_2 = 0;
-float x = 0.00;
-float y = 0.00;
+float rotation_1 = 0.00;
+float rotation_2 = 0.00;
+float last_rot_1, last_rot_2;
+float x, y;
+float x_last = 0.00;
+float y_last = 0.00;
+float xg; //orientasi x
+float yg; //orientasi y
+float krho = 0.2; //gain
+float Vr, Vl, vel_r, vel_l;
+
 double delta_x, delta_y, rho, alpha, sdt, beta, vel, omega, Fax, Fay, Ftx, Fty;
 /* Kinematic Dynamixel */
 
 /* Kompas */
 float theta = 0.00;
-float tet = 0.00;
+float tet;
 float avg_delta_tetha = 0.00;
 /* Kompas */
 
@@ -155,9 +154,9 @@ const unsigned char flagracing [] PROGMEM = {
 /*ICON Tampilan OLED*/
 
 /* IR PIN */
-int pinIr_kiri = 5;
-int pinIr_kanan = 4;
-int pinIr_tengah = 3;
+int pinIr_kiri = A0;
+int pinIr_kanan = A3;
+int pinIr_tengah = A1;
 /* IR PIN */
 
 /* OpenRB Master */
@@ -224,5 +223,6 @@ void inisial() {
 
   pinMode(pinIr_kanan, INPUT);
   pinMode(pinIr_kiri, INPUT);
+  pinMode(pinIr_tengah, INPUT);
   /* Bagian PinMode */
 }

@@ -159,7 +159,7 @@ void LineFollower() {
     lcd.setTextColor(WHITE);
     lcd.setCursor(1, 1);
     lcd.print("Posisikan Pada Track");
-    if (ir_kanan() == 1 && ir_kiri() == 1) {
+    if (ir_kanan() == 1 || ir_tengah() || 1 && ir_kiri() || 1) {
       lcd.setTextSize(1.5);
       lcd.setCursor(25, 20);
       lcd.println("GO!");
