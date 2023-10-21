@@ -13,7 +13,7 @@ void nilai_yaws() {
     theta = -theta;
     //tet untuk nilai akhir sudut;
     avg_delta_tetha = (theta - tet) / 2;
-    Serial.println(theta);
+    //    Serial.println(cos(theta));/
     //Serial.println(y);
     //    lcd.clearDisplay();
     //    lcd.setTextSize(1);

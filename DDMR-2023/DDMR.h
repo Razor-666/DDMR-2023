@@ -60,38 +60,23 @@ void set_point(float xg, float yg) {
   if (halaman == 2) {
     terima_hcsr();
 
-    if (hc0 > 25 && hc2 > 25 && hc1 > 25) { //000
+    if (hc0 > 30 && hc2 > 30 && hc1 > 30) { //000
       sdt = atan2(delta_y, delta_x);
-    } else if (hc0 > 25 && hc2 > 25 && hc1 <= 25) { //001
-      sdt = atan2(delta_y, delta_x) + 6.1;
-    } else if (hc0 > 25 && hc2 <= 25 && hc1 > 25) { //010
-      sdt = atan2(delta_y, delta_x) + 6.1;
-    } else if (hc0 > 25 && hc2 <= 25 && hc1 <= 25) { //011
+    } else if (hc0 > 30 && hc2 > 30 && hc1 <= 30) { //001
       sdt = atan2(delta_y, delta_x) + 4.7;
-    } else if (hc0 <= 25 && hc2 > 25 && hc1 > 25) { //100
+    } else if (hc0 > 30 && hc2 <= 30 && hc1 > 30) { //010
+      sdt = atan2(delta_y, delta_x) + 4.7;
+    } else if (hc0 > 30 && hc2 <= 30 && hc1 <= 30) { //011
+      sdt = atan2(delta_y, delta_x) + 3.14;
+    } else if (hc0 <= 30 && hc2 > 30 && hc1 > 30) { //100
       sdt = atan2(delta_y, delta_x) - 3.14;
-    } else if (hc0 <= 25 && hc2 <= 25 && hc1 > 25) { //110
+    } else if (hc0 <= 30 && hc2 <= 30 && hc1 > 30) { //110
       sdt = atan2(delta_y, delta_x) - 4.7;
-    } else if (hc0 <= 25 && hc2 > 25 && hc1 <= 25) { //101
-      sdt = atan2(delta_y, delta_x) + 6.1;
+    } else if (hc0 <= 30 && hc2 > 30 && hc1 <= 30) { //101
+      sdt = atan2(delta_y, delta_x) + 4.7;
     } else {
       sdt = atan2(delta_y, delta_x) + 4.7;
     }
-    //    if (hc0 > 15 && hc2 > 15 && hc1 > 15)sdt = atan2(delta_y, delta_x); //000
-    //
-    //    else if (hc0 > 20 && hc2 > 15 && hc1 < 20)sdt = atan2(delta_y, delta_x) + 1.57; //001
-    //
-    //    else if (hc0 > 20 && hc2 < 15 && hc1 > 20)sdt = atan2(delta_y, delta_x) - 6.2; //010
-    //
-    //    else if (hc0 > 20 && hc2 > 15 && hc1 < 20)sdt = atan2(delta_y, delta_x) + 1.57; //011
-    //
-    //    else if (hc0 < 20 && hc2 > 15 && hc1 > 20)sdt = atan2(delta_y, delta_x) - 6.2; //100
-    //
-    //    else if (hc0 < 20 && hc2 < 20 && hc1 > 20) sdt = atan2(delta_y, delta_x) - 6.2; //110
-    //
-    //    else if (hc0 > 20 && hc2 < 15 && hc1 < 20) sdt = atan2(delta_y, delta_x) + 1.57; //101
-
-    //    else sdt = atan2(delta_y, delta_x) + 0.78;
   }
   else if (halaman == 3) sdt = atan2(delta_y, delta_x);
   //Logika obstacle avoidance pengatur sudut //hc0 = ki //hc1 = ka //hc2 = te
@@ -105,8 +90,14 @@ void set_point(float xg, float yg) {
   vel   = krho * rho;
   omega = 4 * alpha - 1 * beta;
 
-  vel_r = vel + (omega * 22.5 / 10); //omega*L/(2R) aslinya 0.168 //0.2
-  vel_l = vel - (omega * 22.5 / 10);
+  if (halaman == 2) {
+    vel_r = vel + (omega * 22.5 / 35); //omega*L/(2R) aslinya 0.168 //0.2
+    vel_l = vel - (omega * 22.5 / 35);
+  }
+  else if (halaman == 3) {
+    vel_r = vel + (omega * 22.5 / 10); //omega*L/(2R) aslinya 0.168 //0.2
+    vel_l = vel - (omega * 22.5 / 10);
+  }
   //  Serial.println(String("Vel_r: ") + vel_r + ";" + String("Vel_l: ") + vel_l);
 
   if (vel_r > 50)
